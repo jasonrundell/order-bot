@@ -1,0 +1,19 @@
+{
+  "name": "order-bot",
+  "version": "1.0.0",
+  "description": "Order items through Slack",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "author": "jasonrundell",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^23.6.0"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "slackbots": "^1.2.0"
+  }
+}
