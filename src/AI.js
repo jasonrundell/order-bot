@@ -17,7 +17,8 @@ AI.QueryResponses = {
         'yo',
         'hey',
         'bonjour',
-        'wassup'
+        'wassup',
+        'howdy'
     ],
     respondWithHoursOfOperation: [
         'hours',
