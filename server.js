@@ -11,23 +11,23 @@ const bot = new SlackBot({
 });
 
 bot.on('start', () => {
-    App.Init();
-    AI.Init();
-    // define channel, where bot exist. You can adjust it there https://my.slack.com/services 
+    App.init();
+    AI.init();
+    // define channel, where bot exist. You can adjust it there https://my.slack.com/services
     //bot.postMessageToChannel('orderbot-test-channel', `Order Bot is active. Awaiting orders ... ${C}`, params);
 
     // define existing username instead of 'user_name'
     //bot.postMessageToUser('jrundell', 'Hello from Order Bot', params);
 
-    // If you add a 'slackbot' property, 
+    // If you add a 'slackbot' property,
     // you will post to another user's slackbot channel instead of a direct message
-    //bot.postMessageToUser('orderbot', 'meow!', { 'slackbot': true, icon_emoji: ':cat:' }); 
+    //bot.postMessageToUser('orderbot', 'meow!', { 'slackbot': true, icon_emoji: ':cat:' });
 
     // define private group instead of 'private_group', where bot exist
-    //bot.postMessageToGroup('private_group', 'meow!', params); 
+    //bot.postMessageToGroup('private_group', 'meow!', params);
 });
 
-bot.on('error', (err) => Logger.Error(err));
+bot.on('error', (err) => Logger.error(err));
 
 bot.on('message', (data) => {
     if (data.bot_id === C.BOT_ID) {
@@ -45,5 +45,5 @@ bot.on('message', (data) => {
    if (data.channel.charAt(0) === 'D') {
         AI.handleDirectMessage(data.text);
    }
-    
+
 });
