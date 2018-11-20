@@ -2,11 +2,11 @@
   "name": "order-bot",
   "version": "1.0.0",
   "description": "Order items through Slack",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node server.js",
     "setup": "eb init -p node.js",
-    "deploy": "eb deploy",
+    "deploy": "eb deploy -r us-east-1",
     "test": "jest"
   },
   "author": "jasonrundell",
