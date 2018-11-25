@@ -47,24 +47,15 @@ const Bot = (function(){
       return;
     }
 
-    let userId = null;
-    let allUsers = slackbot.getUsers()._value.members;
-
     /*
     C, it's a public channel
     D, it's a DM with the user
     G, it's either a private channel or multi-person DM
     */
     if (data.channel.charAt(0) === 'D') {
-
-      allUsers.forEach(element => {
-        if (element.id === data.user) {
-          userId = element.name;
-          //console.log(element);
-        }
-      });
       let aiResponse = AI.handleDirectMessage(data.text);
-      slackbot.postMessageToUser(userId, aiResponse, slackbot_params);
+      let userName = Bot.getSlackUsername(data.user);
+      slackbot.postMessageToUser(userName, aiResponse, slackbot_params);
     }
 
   });
@@ -72,6 +63,21 @@ const Bot = (function(){
   return {
     init: function(){
 
+    },
+    getSlackUserInfo: function(slackUniqueId) {
+      let allUsers = slackbot.getUsers()._value.members;
+      let userInfo = null;
+      allUsers.forEach(element => {
+        if (element.id === slackUniqueId) {
+          userInfo = element;
+        }
+      });
+
+      return userInfo;
+    },
+    getSlackUsername: function(slackUniqueId){
+      let userInfo = Bot.getSlackUserInfo(slackUniqueId);
+      return userInfo.name;
     }
   }
 })();
