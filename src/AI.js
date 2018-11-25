@@ -80,7 +80,7 @@ const AI = (function(){
     respondWithHelp: function() {
       return `Current commands I am familiar with are:\n\`hours\` - I will give you the store hours.`;
     }
-  }
+  };
 })();
 
 module.exports = AI;

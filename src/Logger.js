@@ -10,7 +10,7 @@ const Logger = (function(){
     misunderstanding: function(message){
       console.log(colorError,message);
     },
-  }
+  };
 })();
 
 module.exports = Logger;

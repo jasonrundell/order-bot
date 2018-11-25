@@ -1,11 +1,10 @@
 const SlackBot = require('slackbots');
 const Logger = require('./Logger');
 const AI = require('./AI');
+const Slackbot_Secrets = require('./Slackbot_Secrets');
 
 const Bot = (function(){
   const CONFIG = {
-    BOT_ID: 'BDNNQPXUK',
-    BOT_TOKEN: 'xoxb-2184034487-464264402385-um4Okes6DTaopoorwUP4KEj7',
     BOT_NAME: 'order-bot',
     BOT_FRIENDLY_NAME: 'Order Bot',
     BOT_EMOJI: ':robot_face:',
@@ -13,8 +12,8 @@ const Bot = (function(){
     COMPANY_NAME_PLURAL: 'Lucy\'s Coffee\'s'
   };
   const slackbot = new SlackBot({
-    token: CONFIG.BOT_TOKEN,
-    name: CONFIG.BOT_NAME
+    token: Slackbot_Secrets.TOKEN,
+    name: Slackbot_Secrets.BOT_NAME
   });
 
   const slackbot_params = {
@@ -40,24 +39,7 @@ const Bot = (function(){
   slackbot.on('error', (err) => Logger.error(err));
 
   slackbot.on('message', (data) => {
-    if (data.bot_id === CONFIG.BOT_ID) {
-      return;
-    }
-    if (data.type !== 'message') {
-      return;
-    }
-
-    /*
-    C, it's a public channel
-    D, it's a DM with the user
-    G, it's either a private channel or multi-person DM
-    */
-    if (data.channel.charAt(0) === 'D') {
-      let aiResponse = App.handleDirectMessage(data.text);
-      let userName = Bot.getSlackUsername(data.user);
-      slackbot.postMessageToUser(userName, aiResponse, slackbot_params);
-    }
-
+    Bot.handleMessage(data);
   });
 
   return {
@@ -78,8 +60,41 @@ const Bot = (function(){
     getSlackUsername: function(slackUniqueId){
       let userInfo = Bot.getSlackUserInfo(slackUniqueId);
       return userInfo.name;
+    },
+    handleMessage: function(data){
+      if (data.bot_id === Slackbot_Secrets.ID) {
+        return;
+      }
+      if (data.type !== 'message') {
+        return;
+      }
+
+      let messageType = data.channel.charAt(0);
+
+      switch(messageType) {
+        case 'D': {
+          /* D, it's a DM with the user */
+          Bot.handleDirectMessage(data.user,data.text);
+          break;
+        }
+        case 'C': {
+          /* C, it's a public channel */
+          // todo
+          break;
+        }
+        case 'G': {
+          /* G, it's either a private channel or multi-person DM */
+          // todo
+          break;
+        }
+      }
+    },
+  handleDirectMessage: function(userId,userMessage){
+      let aiResponse = AI.handleDirectMessage(userMessage);
+      let userName = Bot.getSlackUsername(userId);
+      slackbot.postMessageToUser(userName, aiResponse, slackbot_params);
     }
-  }
+  };
 })();
 
 module.exports = Bot;
