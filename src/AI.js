@@ -22,6 +22,10 @@ const AI = (function(){
         'what are your hours of operation',
         'when do you open',
         'are you open'
+    ],
+    respondWithHelp: [
+        'help',
+        'what can you do'
     ]
   }
 
@@ -66,9 +70,17 @@ const AI = (function(){
       const params = {
           icon_emoji: C.BOT_EMOJI
       };
-      bot.postMessageToUser('jrundell', 'Taddle Creek\'s hours this week are:\nMon - Thurs: 7:30 am - 4 pm\nFri: 7:30 am - 2:30 pm', params);
+      bot.postMessageToUser('jrundell', `${C.COMPANY_NAME_PLURAL} hours this week are:\nMon - Thurs: 7:30 am - 4 pm\nFri: 7:30 am - 2:30 pm`, params);
+    },
+    respondWithHelp: function() {
+      const params = {
+          icon_emoji: C.BOT_EMOJI
+      };
+      bot.postMessageToUser('jrundell', `Current commands I am familiar with are:\n\`hours\` - I will give you the store hours of ${C.COMPANY_NAME}.`, params);
     }
   }
 })();
+
+const respondWithHoursOfOperation = `console.log('foo');`;
 
 module.exports = AI;
