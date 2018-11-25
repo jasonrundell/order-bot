@@ -38,20 +38,40 @@ const AI = (function(){
       let simpleMessage = AI.simplifyQuery(message);
       Logger.log(`${C.BOT_FRIENDLY_NAME} simplified query to: "${simpleMessage}"`);
 
-      let decision = 'AI.respondWithMisunderstanding(\'' + simpleMessage + '\')';
+      let decision = 'respondWithMisunderstanding';
 
       Object.entries(queryResponses).forEach(([key, val]) => {
           queryResponses[key].forEach((item) => {
               if (simpleMessage === item) {
-                  decision = 'AI.' + key + '()';
+                  decision = key;
               }
           });
       });
       Logger.log(`${C.BOT_FRIENDLY_NAME} decided to respond using logic from: ${decision}`);
-      eval(decision);
+      AI.handleDecision(decision,simpleMessage);
     },
     simplifyQuery: function(message) {
       return message.replace(/[?!]/g,'').toLowerCase().trim();
+    },
+    handleDecision: function(decision,message) {
+      switch(decision) {
+        case 'respondWithMisunderstanding': {
+          AI.respondWithMisunderstanding(message);
+          break;
+        }
+        case 'respondWithGreeting': {
+          AI.respondWithGreeting()
+          break;
+        }
+        case 'respondWithHoursOfOperation': {
+          AI.respondWithHoursOfOperation()
+          break;
+        }
+        case 'respondWithHelp': {
+          AI.respondWithHelp()
+          break;
+        }
+      }
     },
     respondWithMisunderstanding: function(query='') {
       const params = {
