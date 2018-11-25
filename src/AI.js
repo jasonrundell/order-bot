@@ -33,7 +33,7 @@ const AI = (function(){
     init: function(){
       Logger.log(C.BOT_FRIENDLY_NAME + '\'s AI is running ✓');
     },
-    handleDirectMessage: function(message) {
+    handleDirectMessage: function(userId,message) {
       Logger.log(`${C.BOT_FRIENDLY_NAME} received a direct message: "${message}"`);
       let simpleMessage = AI.simplifyQuery(message);
       Logger.log(`${C.BOT_FRIENDLY_NAME} simplified query to: "${simpleMessage}"`);
@@ -48,55 +48,55 @@ const AI = (function(){
           });
       });
       Logger.log(`${C.BOT_FRIENDLY_NAME} decided to respond using logic from: ${decision}`);
-      AI.handleDecision(decision,simpleMessage);
+      AI.handleDecision(decision,userId,simpleMessage);
     },
     simplifyQuery: function(message) {
       return message.replace(/[?!]/g,'').toLowerCase().trim();
     },
-    handleDecision: function(decision,message) {
+    handleDecision: function(decision,userId,message='') {
       switch(decision) {
         case 'respondWithMisunderstanding': {
-          AI.respondWithMisunderstanding(message);
+          AI.respondWithMisunderstanding(userId,message);
           break;
         }
         case 'respondWithGreeting': {
-          AI.respondWithGreeting()
+          AI.respondWithGreeting(userId);
           break;
         }
         case 'respondWithHoursOfOperation': {
-          AI.respondWithHoursOfOperation()
+          AI.respondWithHoursOfOperation(userId);
           break;
         }
         case 'respondWithHelp': {
-          AI.respondWithHelp()
+          AI.respondWithHelp(userId);
           break;
         }
       }
     },
-    respondWithMisunderstanding: function(query='') {
+    respondWithMisunderstanding: function(userId,query='') {
       const params = {
           icon_emoji: C.BOT_EMOJI
       };
       Logger.misunderstanding(`${C.BOT_FRIENDLY_NAME} did not understand a user's query of "${query}"`);
-      bot.postMessageToUser('jrundell', `I'm sorry, but I can't help with that yet.`, params);
+      bot.postMessageToUser(userId, `I'm sorry, but I can't help with that yet.`, params);
     },
-    respondWithGreeting: function(replyToName='') {
+    respondWithGreeting: function(userId,replyToName='') {
       const params = {
           icon_emoji: C.BOT_EMOJI
       };
-      bot.postMessageToUser('jrundell', `Yo ${replyToName}!`, params);
+      bot.postMessageToUser(userId, `Yo ${replyToName}!`, params);
     },
-    respondWithHoursOfOperation: function() {
+    respondWithHoursOfOperation: function(userId) {
       const params = {
           icon_emoji: C.BOT_EMOJI
       };
-      bot.postMessageToUser('jrundell', `${C.COMPANY_NAME_PLURAL} hours this week are:\nMon - Thurs: 7:30 am - 4 pm\nFri: 7:30 am - 2:30 pm`, params);
+      bot.postMessageToUser(userId, `${C.COMPANY_NAME_PLURAL} hours this week are:\nMon - Thurs: 7:30 am - 4 pm\nFri: 7:30 am - 2:30 pm`, params);
     },
-    respondWithHelp: function() {
+    respondWithHelp: function(userId) {
       const params = {
           icon_emoji: C.BOT_EMOJI
       };
-      bot.postMessageToUser('jrundell', `Current commands I am familiar with are:\n\`hours\` - I will give you the store hours of ${C.COMPANY_NAME}.`, params);
+      bot.postMessageToUser(userId, `Current commands I am familiar with are:\n\`hours\` - I will give you the store hours of ${C.COMPANY_NAME}.`, params);
     }
   }
 })();

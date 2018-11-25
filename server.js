@@ -30,20 +30,21 @@ bot.on('start', () => {
 bot.on('error', (err) => Logger.error(err));
 
 bot.on('message', (data) => {
-    if (data.bot_id === C.BOT_ID) {
-        return;
-    }
-    if (data.type !== 'message') {
-        return;
-    }
-    console.log(data);
-    /*
-    C, it's a public channel
-    D, it's a DM with the user
-    G, it's either a private channel or multi-person DM
-    */
-   if (data.channel.charAt(0) === 'D') {
-        AI.handleDirectMessage(data.text);
-   }
+  if (data.bot_id === C.BOT_ID) {
+    return;
+  }
+  if (data.type !== 'message') {
+    return;
+  }
+  console.log(data);
+  /*
+  C, it's a public channel
+  D, it's a DM with the user
+  G, it's either a private channel or multi-person DM
+  */
+  if (data.channel.charAt(0) === 'D') {
+    let userId = 'jrundell';
+    AI.handleDirectMessage(userId,data.text);
+  }
 
 });
