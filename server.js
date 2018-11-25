@@ -1,5 +1,3 @@
-const AI = require('./src/AI');
-const Bot = require('./src/Bot');
+const App = require('./src/App');
 
-Bot.init();
-AI.init();
+App.init();
