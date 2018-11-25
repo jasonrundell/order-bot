@@ -3,6 +3,8 @@ const C = {
     BOT_NAME: 'order-bot',
     BOT_FRIENDLY_NAME: 'Order Bot',
     BOT_ID: 'BDNNQPXUK',
-    BOT_EMOJI: ':robot_face:'
+    BOT_EMOJI: ':robot_face:',
+    COMPANY_NAME: 'Lucy\'s Coffee',
+    COMPANY_NAME_PLURAL: 'Lucy\'s Coffee\'s'
 };
 module.exports = C;
