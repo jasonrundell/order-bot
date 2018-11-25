@@ -1,7 +1,7 @@
-const C = require('./config');
 const Logger = require('./Logger');
 
 const AI = (function(){
+  const AI_NAME = 'AI';
   const queryResponses = {
     respondWithGreeting: [
         'hi',
@@ -26,12 +26,12 @@ const AI = (function(){
 
   return {
     init: function(){
-      Logger.log(C.BOT_FRIENDLY_NAME + '\'s AI is running ✓');
+      Logger.log(`AI is running ✓`);
     },
     handleDirectMessage: function(message) {
-      Logger.log(`${C.BOT_FRIENDLY_NAME} received a direct message: "${message}"`);
+      Logger.log(`${AI_NAME} received a direct message: "${message}"`);
       let simpleMessage = AI.simplifyQuery(message);
-      Logger.log(`${C.BOT_FRIENDLY_NAME} simplified query to: "${simpleMessage}"`);
+      Logger.log(`${AI_NAME} simplified query to: "${simpleMessage}"`);
 
       let decision = 'respondWithMisunderstanding';
 
@@ -42,7 +42,7 @@ const AI = (function(){
               }
           });
       });
-      Logger.log(`${C.BOT_FRIENDLY_NAME} decided to respond using logic from: ${decision}`);
+      Logger.log(`${AI_NAME} decided to respond using logic from: ${decision}`);
       return AI.handleDecision(decision,simpleMessage);
     },
     simplifyQuery: function(message) {
@@ -65,21 +65,19 @@ const AI = (function(){
       }
     },
     respondWithMisunderstanding: function(querySent='') {
-      Logger.misunderstanding(`${C.BOT_FRIENDLY_NAME} did not understand a user's query of "${querySent}"`);
+      Logger.misunderstanding(`${AI_NAME} did not understand a user's query of "${querySent}"`);
       return 'I\'m sorry, but I can\'t help with that yet.';
     },
     respondWithGreeting: function() {
       return `Yo!`;
     },
     respondWithHoursOfOperation: function() {
-      return `${C.COMPANY_NAME_PLURAL} hours this week are:\nMon - Thurs: 7:30 am - 4 pm\nFri: 7:30 am - 2:30 pm`;
+      return `Our hours this week are:\nMon - Thurs: 7:30 am - 4 pm\nFri: 7:30 am - 2:30 pm`;
     },
     respondWithHelp: function() {
-      return `Current commands I am familiar with are:\n\`hours\` - I will give you the store hours of ${C.COMPANY_NAME}.`;
+      return `Current commands I am familiar with are:\n\`hours\` - I will give you the store hours.`;
     }
   }
 })();
-
-const respondWithHoursOfOperation = `console.log('foo');`;
 
 module.exports = AI;

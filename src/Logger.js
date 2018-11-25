@@ -1,4 +1,3 @@
-const C = require('./config');
 const Logger = (function(){
   const colorError = '\x1b[31m%s\x1b[0m';
   return {
