@@ -12,8 +12,7 @@ const Bot = (function(){
     COMPANY_NAME_PLURAL: 'Lucy\'s Coffee\'s'
   };
   const slackbot = new SlackBot({
-    token: Slackbot_Secrets.TOKEN,
-    name: Slackbot_Secrets.BOT_NAME
+    token: Slackbot_Secrets.TOKEN
   });
 
   const slackbot_params = {
