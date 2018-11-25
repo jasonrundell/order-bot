@@ -12,6 +12,9 @@ const App = (function(){
       Logger.log(`${CONFIG.APP_NAME} has launched ...`);
       Bot.init();
       AI.init();
+    },
+    handleDirectMessage: function(message){
+      AI.handleDirectMessage(message);
     }
   }
 })();

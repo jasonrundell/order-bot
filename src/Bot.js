@@ -53,7 +53,7 @@ const Bot = (function(){
     G, it's either a private channel or multi-person DM
     */
     if (data.channel.charAt(0) === 'D') {
-      let aiResponse = AI.handleDirectMessage(data.text);
+      let aiResponse = App.handleDirectMessage(data.text);
       let userName = Bot.getSlackUsername(data.user);
       slackbot.postMessageToUser(userName, aiResponse, slackbot_params);
     }
