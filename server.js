@@ -10,6 +10,10 @@ const bot = new SlackBot({
   name: C.BOT_NAME
 });
 
+const bot_params = {
+  icon_emoji: C.BOT_EMOJI
+};
+
 bot.on('start', () => {
     App.init();
     AI.init();
@@ -36,15 +40,25 @@ bot.on('message', (data) => {
   if (data.type !== 'message') {
     return;
   }
-  console.log(data);
+
+  let userId = null;
+  let allUsers = bot.getUsers()._value.members;
+
   /*
   C, it's a public channel
   D, it's a DM with the user
   G, it's either a private channel or multi-person DM
   */
   if (data.channel.charAt(0) === 'D') {
-    let userId = 'jrundell';
-    AI.handleDirectMessage(userId,data.text);
+
+    allUsers.forEach(element => {
+      if (element.id === data.user) {
+        userId = element.name;
+        //console.log(element);
+      }
+    });
+    let botResponse = AI.handleDirectMessage(data.text);
+    bot.postMessageToUser(userId,botResponse,bot_params);
   }
 
 });
