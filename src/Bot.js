@@ -39,6 +39,7 @@ const Bot = (function(){
   slackbot.on('error', (err) => Logger.error(err));
 
   slackbot.on('message', (data) => {
+    // console.log(data); // uncomment to get your bot_id value on first-run.
     Bot.handleMessage(data);
   });
 
@@ -62,15 +63,18 @@ const Bot = (function(){
       return userInfo.name;
     },
     handleMessage: function(data){
+      // we don't want our bot reacting to it's own messages
       if (data.bot_id === Slackbot_Secrets.ID) {
         return;
       }
+      // we only want the bot reacting to a direct message
       if (data.type !== 'message') {
         return;
       }
 
       let messageType = data.channel.charAt(0);
 
+      // handle the message type
       switch(messageType) {
         case 'D': {
           /* D, it's a DM with the user */
