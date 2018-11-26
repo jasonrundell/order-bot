@@ -50,4 +50,7 @@ At the time of writing this, this software is not meant to react to anything but
 
 ## Deployment
 
-I'm using [Amazon's Elastic Beanstalk](https://docs.aws.amazon.com/quickstarts/latest/webapp/welcome.html?icmpid=docs_eb_console_new) for deployment.
+I'm using **Amazon's Elastic Beanstalk** for deployment.
+
+- [Getting Started with Web App Deployment on Elastic Beanstalk](https://docs.aws.amazon.com/quickstarts/latest/webapp/welcome.html?icmpid=docs_eb_console_new)
+- [Install the Elastic Beanstalk Command Line Interface (EB CLI)](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html?icmpid=docs_elasticbeanstalk_console)
