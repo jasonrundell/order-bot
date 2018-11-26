@@ -72,7 +72,20 @@ const AI = (function(){
       return 'I\'m sorry, but I can\'t help with that yet.';
     },
     respondWithGreeting: function() {
-      return `Yo!`;
+      let date = new Date();
+      let currentHour = parseInt(date.getHours());
+      let response = 'Hi.';
+
+      if (currentHour < 11) {
+        response = 'Good morning.';
+      } else if (currentHour >= 11 && currentHour <= 17) {
+        response = 'Good afternoon.';
+      } else if (currentHour > 17) {
+        response = 'Good evening.';
+      }
+
+      return response;
+
     },
     respondWithHoursOfOperation: function() {
       return `Our hours this week are:\nMon - Thurs: 7:30 am - 4 pm\nFri: 7:30 am - 2:30 pm`;
