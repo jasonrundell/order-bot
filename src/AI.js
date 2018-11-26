@@ -24,6 +24,15 @@ const AI = (function(){
     respondWithHelp: [
         'help',
         'what can you do'
+    ],
+    respondWithBalance: [
+      'balance',
+      'what\'s my balance',
+      'how much do i have left',
+      'how much money do i have left',
+      'what is my balance',
+      'do i have anything',
+      'do i have a balance'
     ]
   };
 
@@ -65,6 +74,9 @@ const AI = (function(){
         case 'respondWithHelp': {
           return AI.respondWithHelp();
         }
+        case 'respondWithBalance': {
+          return AI.respondWithBalance();
+        }
       }
     },
     respondWithMisunderstanding: function(querySent='') {
@@ -91,7 +103,10 @@ const AI = (function(){
       return `Our hours this week are:\nMon - Thurs: 7:30 am - 4 pm\nFri: 7:30 am - 2:30 pm`;
     },
     respondWithHelp: function() {
-      return `Current commands I am familiar with are:\n\`hours\` - I will give you the store hours.`;
+      return `Current commands I am familiar with are:\n\`hours\` - I will give you the store hours.\n\`balance\` - I will tell you your remaning balance.`;
+    },
+    respondWithBalance: function() {
+      return `You have $25.00 CAD remaining.`;
     }
   };
 })();
