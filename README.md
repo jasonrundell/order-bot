@@ -23,7 +23,7 @@ You'll need to obtain the unique `bot_id` of your bot and change the `ID` value 
 2. run your project with `npm start`.
 3. Send a message to the bot from Slack and take a look at your terminal's output for an object like the following:
 
-```json
+```js
 { 
   text: 'Good evening.',
   username: 'Lucy\'s Coffee',
@@ -46,3 +46,8 @@ You'll need to obtain the unique `bot_id` of your bot and change the `ID` value 
 ### Why is getting this bot_id important?
 
 At the time of writing this, this software is not meant to react to anything but the user. Reacting to itself (it'll try to handle every type of event in Slack that the bot is attached to) could result in logic loops and this is the best way I can think of for preventing this type of unwanted behaviour (for now - please feel free to give suggestions).
+
+
+## Deployment
+
+I'm using [Amazon's Elastic Beanstalk](https://docs.aws.amazon.com/quickstarts/latest/webapp/welcome.html?icmpid=docs_eb_console_new) for deployment.
