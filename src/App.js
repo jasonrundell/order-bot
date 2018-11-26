@@ -4,7 +4,7 @@ const Bot = require('./Bot');
 
 const App = (function(){
   const CONFIG = {
-    APP_NAME: 'Lucy\'s Coffee Slack Order Bot'
+    APP_NAME: 'Lucy\'s Coffee Slack Bot'
   };
 
   return {
