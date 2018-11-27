@@ -64,7 +64,7 @@ const Bot = (function(){
     },
     handleMessage: function(data){
       // we don't want our bot reacting to it's own messages
-      if (data.bot_id === Slackbot_Secrets.ID) {
+      if (data.bot_id && (data.bot_id === Slackbot_Secrets.ID)) {
         return;
       }
       // we only want the bot reacting to a direct message
