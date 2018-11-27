@@ -47,7 +47,6 @@ You'll need to obtain the unique `bot_id` of your bot and change the `ID` value 
 
 At the time of writing this, this software is not meant to react to anything but the user. Reacting to itself (it'll try to handle every type of event in Slack that the bot is attached to) could result in logic loops and this is the best way I can think of for preventing this type of unwanted behaviour (for now - please feel free to give suggestions).
 
-
 ## Deployment
 
 I'm using **Amazon's Elastic Beanstalk** for deployment.
