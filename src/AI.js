@@ -51,6 +51,20 @@ const AI = (function(){
       'identify yourself',
       'who are you',
       'what are you'
+    ],
+    respondWithLargeCoffeeToGo: [
+      'large coffee to go',
+      'large coffee',
+      'large black coffee',
+      'larg coffee black',
+      'lg coffee',
+      'lg coffee to go',
+      'lg coffee black',
+      'lg black coffee',
+      'lrg coffee',
+      'lrg coffee to go',
+      'lrg coffee black',
+      'lrg black coffee'
     ]
   };
 
@@ -100,6 +114,9 @@ const AI = (function(){
         }
         case 'respondWithIdentity': {
           return AI.respondWithIdentity();
+        }
+        case 'respondWithLargeCoffeeToGo': {
+          return AI.respondWithLargeCoffeeToGo();
         }
       }
     },
@@ -151,6 +168,42 @@ const AI = (function(){
     },
     respondWithIdentity: function() {
       return `I'm the Taddle Creek Slack Bot! You can ask me questions or find out more by asking me for \`help\``;
+    },
+    respondWithLargeCoffeeToGo: function() {
+      //https://api.slack.com/docs/messages/builder?msg=%7B%22text%22%3A%22Are%20you%20trying%20to%20order%20a%20large%20coffee%20for%20%242.50%3F%22%2C%22attachments%22%3A%5B%7B%22text%22%3A%22Your%20balance%20after%20would%20be%20%2410.50%22%2C%22fallback%22%3A%22You%20are%20unable%20to%20choose%20a%20game%22%2C%22callback_id%22%3A%22wopr_game%22%2C%22color%22%3A%22%23000000%22%2C%22attachment_type%22%3A%22default%22%2C%22actions%22%3A%5B%7B%22name%22%3A%22drink%22%2C%22text%22%3A%22Yes%22%2C%22type%22%3A%22button%22%2C%22value%22%3A%22large_coffee_2go%22%2C%22confirm%22%3A%7B%22title%22%3A%22Are%20you%20sure%3F%22%2C%22text%22%3A%22Are%20you%20sure%3F%22%2C%22ok_text%22%3A%22Yes%22%2C%22dismiss_text%22%3A%22No%22%7D%7D%2C%7B%22name%22%3A%22cancel%22%2C%22text%22%3A%22Cancel%22%2C%22style%22%3A%22danger%22%2C%22type%22%3A%22button%22%2C%22value%22%3A%22cancel%22%7D%5D%7D%5D%7D
+      return `{
+          "text": "Are you trying to order a large coffee for $2.50?",
+          "attachments": [
+              {
+                  "text": "Your balance after would be $10.50",
+                  "fallback": "You are unable to choose a game",
+                  "callback_id": "wopr_game",
+                  "color": "#000000",
+                  "attachment_type": "default",
+                  "actions": [
+                      {
+                          "name": "drink",
+                          "text": "Yes",
+                          "type": "button",
+                          "value": "large_coffee_2go",
+                          "confirm": {
+                              "title": "Are you sure?",
+                              "text": "Are you sure?",
+                              "ok_text": "Yes",
+                              "dismiss_text": "No"
+                          }
+                      },
+                      {
+                          "name": "cancel",
+                          "text": "Cancel",
+                          "style": "danger",
+                          "type": "button",
+                          "value": "cancel"
+                      }
+                  ]
+              }
+          ]
+      }`;
     }
   };
 })();
