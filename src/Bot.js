@@ -5,11 +5,11 @@ const Slackbot_Secrets = require('./Slackbot_Secrets');
 
 const Bot = (function(){
   const CONFIG = {
-    BOT_NAME: 'order-bot',
-    BOT_FRIENDLY_NAME: 'Order Bot',
+    BOT_NAME: 'taddlecreek',
+    BOT_FRIENDLY_NAME: 'Taddle Creek',
     BOT_EMOJI: ':robot_face:',
-    COMPANY_NAME: 'Lucy\'s Coffee',
-    COMPANY_NAME_PLURAL: 'Lucy\'s Coffee\'s'
+    COMPANY_NAME: 'Taddle Creek',
+    COMPANY_NAME_PLURAL: 'Taddle Creek\'s'
   };
 
   const slackbot = new SlackBot({
