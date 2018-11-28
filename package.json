@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "setup": "eb init -p node.js && eb create dev-env",
+    "setup": "eb init -p node.js && eb create staging",
     "deploy": "eb deploy -r us-east-1",
     "test": "jest"
   },
