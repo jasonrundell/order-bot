@@ -34,9 +34,10 @@ const AI = (function(){
     respondWithBalance: [
       'balance',
       'what\'s my balance',
+      'whats my balance',
+      'what is my balance',
       'how much do i have left',
       'how much money do i have left',
-      'what is my balance',
       'do i have anything',
       'do i have a balance'
     ],
