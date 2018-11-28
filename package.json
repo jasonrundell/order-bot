@@ -1,17 +1,40 @@
 {
   "name": "order-bot",
   "version": "1.0.0",
-  "description": "Order items through Slack",
+  "description": "Order items through a Slack Bot",
   "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "setup": "eb init -p node.js && eb create staging",
-    "deploy": "eb deploy -r us-east-1",
-    "test": "jest"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonrundell/order-bot.git"
   },
   "author": "jasonrundell",
-  "license": "MIT",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jasonrundell/order-bot/issues"
+  },
+  "scripts": {
+    "dev": "babel-node src/index.js",
+    "setup": "eb init -p node.js && eb create staging",
+    "deploy": "eb deploy -r us-east-1",
+    "prod": "NODE_ENV=production node dist/index.js",
+    "start": "dist/index.js",
+    "build": "rm -rf ./dist/ && babel src --out-dir dist/ --copy-files",
+    "lint": "eslint src",
+    "test": "jest"
+  },
   "dependencies": {
-    "slackbots": "1.2.0"
+    "slackbots": "1.2.0",
+    "babel-polyfill": "^6.26.0",
+    "body-parser": "^1.18.2",
+    "config": "^1.28.1",
+    "express": "^4.16.2",
+    "request": "^2.83.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0"
   }
 }

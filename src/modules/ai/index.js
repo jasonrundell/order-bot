@@ -1,4 +1,4 @@
-const Logger = require('./Logger');
+const log = require('../log');
 
 const AI = (function(){
   const CONFIG = {
@@ -71,12 +71,12 @@ const AI = (function(){
 
   return {
     init: function(){
-      Logger.log(`AI is running ✓`);
+      log.info(`AI is running ✓`);
     },
     handleDirectMessage: function(message) {
-      Logger.log(`${CONFIG.AI_NAME} received a direct message: "${message}"`);
+      log.info(`${CONFIG.AI_NAME} received a direct message: "${message}"`);
       let simpleMessage = AI.simplifyQuery(message);
-      Logger.log(`${CONFIG.AI_NAME} simplified query to: "${simpleMessage}"`);
+      log.info(`${CONFIG.AI_NAME} simplified query to: "${simpleMessage}"`);
 
       let decision = 'respondWithMisunderstanding';
 
@@ -87,7 +87,7 @@ const AI = (function(){
               }
           });
       });
-      Logger.log(`${CONFIG.AI_NAME} decided to respond using logic from: ${decision}`);
+      log.info(`${CONFIG.AI_NAME} decided to respond using logic from: ${decision}`);
       return AI.handleDecision(decision,simpleMessage);
     },
     simplifyQuery: function(message) {
@@ -122,7 +122,7 @@ const AI = (function(){
       }
     },
     respondWithMisunderstanding: function(querySent='') {
-      Logger.misunderstanding(`${CONFIG.AI_NAME} did not understand a user's query of "${querySent}"`);
+      log.misunderstanding(`${CONFIG.AI_NAME} did not understand a user's query of "${querySent}"`);
       return 'I\'m sorry, but I can\'t help with that yet.';
     },
     respondWithGreeting: function() {

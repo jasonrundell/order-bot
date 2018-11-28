@@ -1,0 +1,8 @@
+{
+  "slack": {
+    "orderBot": {
+        "taddleCreekChannel": "#channel",
+        "botToken": "xxxx"
+    }
+  }
+}

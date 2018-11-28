@@ -1,7 +1,7 @@
 const SlackBot = require('slackbots');
-const Logger = require('./Logger');
-const AI = require('./AI');
-const Slackbot_Secrets = require('./Slackbot_Secrets');
+const log = require('../log');
+const AI = require('../ai');
+const Slackbot_Secrets = require('../../Slackbot_Secrets');
 
 const Bot = (function(){
   const CONFIG = {
@@ -21,7 +21,7 @@ const Bot = (function(){
   };
 
   slackbot.on('start', () => {
-    Logger.log(`${CONFIG.BOT_FRIENDLY_NAME} running ✓`);
+    log.info(`${CONFIG.BOT_FRIENDLY_NAME} running ✓`);
     // define channel, where bot exist. You can adjust it there https://my.slack.com/services
     //bot.postMessageToChannel('orderbot-test-channel', `Order Bot is active. Awaiting orders ... ${C}`, params);
 
@@ -36,7 +36,7 @@ const Bot = (function(){
     //bot.postMessageToGroup('private_group', 'meow!', params);
   });
 
-  slackbot.on('error', (err) => Logger.error(err));
+  slackbot.on('error', (err) => log.error(err));
 
   slackbot.on('message', (data) => {
     // console.log(data); // uncomment to get your bot_id value on first-run.
